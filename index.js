@@ -36,6 +36,7 @@ const handleForm = function(e){
     .then(response => {
         const data = response.data;
         console.log('data', data);
+        alert(data.status);
     })
 }
 
