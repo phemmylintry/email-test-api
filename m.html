@@ -18,44 +18,68 @@
 			<div class="col-md-6 col-12 py-3 pt-md-5">
 				<div class="bg-light h-100-100 p-3 d-flex justify-content-around flex-wrap fs-16">
 					<div id="send_certificate" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Certificate Mail</div>
-					<div id="send_confirmation" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Confirmation Mail</div>
+					<!-- <div id="send_confirmation" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Confirmation Mail</div>
 					<div id="send_invitation" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Invitation Mail</div>
 					<div id="send_welcome" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Registration Mail</div>
 					<div id="sendmail" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Plain mail</div>
-					<div id="sendmailwithtemplate" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Mail with Template</div>
+					<div id="sendmailwithtemplate" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Mail with Template</div> -->
 				</div>
 			</div>
 			<div class="col-md-6 col-12 py-3 px-0 mh-490" id="target" ondrop="drop_handler(event)" ondragover="dragover_handler(event)">
-				<form class="bg-white p-3 rounded">
-					<span class="contact-form-title"><span class="font-weight-bold">Email Certificate API</span> Service</span>
-					<div class="wrap-input validate-input" data-validate="">
-						<input class="input bg-disabled" type="text" name="sender" placeholder="Sender" value="femiadenuga@mazzacash.com" disabled>
-						<span class="shadow-input"></span>
-					</div>
-					<div class="wrap-input validate-input" data-validate="Recipient is required: ex@abc.xyz">
-						<input class="input" type="text" name="recipient" placeholder="Recipient Email" required>
-						<span class="shadow-input"></span>
-					</div>
-					<div class="wrap-input validate-input" data-validate="Subject is required">
-						<input class="input" type="text" name="subject" placeholder="Subject" required>
-						<span class="shadow-input"></span>
-					</div>
-					<div class="wrap-input validate-input" data-validate="Subject is required">
-						<input class="input" type="text" name="subject" placeholder="Subject" required>
-						<span class="shadow-input"></span>
-					</div>
-					<div class="container-form-btn">
-						<button class="form-btn"><span>Test Service</span></button>
-					</div>
-				</form>
-
+				<div>
+					<form onsubmit="return false" class="bg-white p-3 rounded">
+						<span class="contact-form-title"><span class="font-weight-bold">Email Certificate API</span> Service</span>
+						<div class="wrap-input validate-input" hidden data-validate="">
+							<input class="input bg-disabled" type="text" name="sender" placeholder="Sender" value="femiadenuga@mazzacash.com" disabled>
+							<span class="shadow-input"></span>
+						</div>
+						<div class="wrap-input validate-input" data-validate="Recipient is required: ex@abc.xyz">
+							<input class="input" type="text" name="recipient" placeholder="Participant Email" required>
+							<span class="shadow-input"></span>
+						</div>
+						<div class="wrap-input validate-input" data-validate="Subject is required">
+							<input class="input" type="text" name="participant_name" placeholder="Participant Name" required>
+							<span class="shadow-input"></span>
+						</div>
+						<div class="wrap-input validate-input" data-validate="Subject is required">
+							<input class="input" type="text" name="certificate_link" placeholder="Link to the certificate" required>
+							<span class="shadow-input"></span>
+						</div>
+						<div class="container-form-btn">
+							<button class="form-btn" onclick="handleForm(this)">Test Service</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
 
 <script src="./index.js"></script>
 	<script>
-	
+		// // Constant URL value for JAAS API
+		// const RAPIDAPI_API_URL = 'https://email.microapi.dev/v1/send_certificate/';
+		// // Object with RapidAPI authorization headers and Content-Type header
+		// const sendmail = {
+		// 	recipient: "andikanaffiah@gmail.com",
+		// 	sender: "femiadenuga@mazzacash.com",
+		// 	subject:'Test',
+		// 	body: "Awake",
+		// 	cc: "",
+		// 	bcc: "",
+		// };
+		// const sendmailcert = {
+		// 	recipient: "phemmylintry@gmail.com",
+		// 	sender: "femiadenuga@mazzacash.com",
+		// 	participant_name: "John Snow",
+		// 	certificate_link: "https://apple.com"
+		// };
+		// axios.post(RAPIDAPI_API_URL, sendmailcert)
+		// .then(response => {
+		// 	const data = response.data;
+		// 	console.log('data', data);
+		// })
+		// .catch(error => console.error('sendmail Failed', error));
+		
 	</script>
 </body>
 </html>

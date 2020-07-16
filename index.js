@@ -1,5 +1,7 @@
+var elemId = "send_certificate";
 function dragstart_handler(ev) {
  // Add the target element's id to the data transfer object
+ elemId = ev.target.id;
  ev.dataTransfer.setData("application/my-app", ev.target.id);
 //  ev.dataTransfer.dropEffect = "copy";
 }
@@ -13,34 +15,49 @@ function drop_handler(ev) {
      const data = ev.dataTransfer.getData("application/my-app");
     let targetEl = document.getElementById("target");
      let div = document.createElement("div");
-     div.innerHTML = `<form class="bg-white p-3 rounded">
-            <span class="contact-form-title">Test Email API Service</span>
-            <div class="wrap-input validate-input" data-validate="Name is required">
-                <input class="input" type="text" name="name" placeholder="Name" required>
-                <span class="shadow-input"></span>
-            </div>
-            <div class="wrap-input validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                <input class="input" type="text" name="email" placeholder="Email" required>
-                <span class="shadow-input"></span>
-            </div>
-            <div class="wrap-input validate-input" data-validate="Subject is required">
-                <input class="input" type="text" name="subject" placeholder="Subject" required>
-                <span class="shadow-input"></span>
-            </div>
-            <div class="wrap-input validate-input" data-validate="Message is required"><grammarly-extension style="position: absolute; top: 0px; left: 0px; pointer-events: none;" class="_1KJtL"></grammarly-extension>
-                <textarea class="input" name="message" placeholder="Message" spellcheck="false" required></textarea>
-                <span class="shadow-input"></span>
-            </div>
-            <div class="container-form-btn">
-                <button class="form-btn"><span>Test Service</span></button>
-            </div>
-        </form>`;
+     div.innerHTML = `
+        <form onsubmit="return false" class="bg-white p-3 rounded">
+        <span class="contact-form-title"><span class="font-weight-bold">Email Certificate API</span> Service</span>
+        <div class="wrap-input validate-input" hidden data-validate="">
+            <input class="input bg-disabled" type="text" name="sender" placeholder="Sender" value="femiadenuga@mazzacash.com" disabled>
+            <span class="shadow-input"></span>
+        </div>
+        <div class="wrap-input validate-input" data-validate="Recipient is required: ex@abc.xyz">
+            <input class="input" type="text" name="recipient" placeholder="Participant Email" required>
+            <span class="shadow-input"></span>
+        </div>
+        <div class="wrap-input validate-input" data-validate="Subject is required">
+            <input class="input" type="text" name="participant_name" placeholder="Participant Name" required>
+            <span class="shadow-input"></span>
+        </div>
+        <div class="wrap-input validate-input" data-validate="Subject is required">
+            <input class="input" type="text" name="certificate_link" placeholder="Link to the certificate" required>
+            <span class="shadow-input"></span>
+        </div>
+        <div class="container-form-btn">
+            <button class="form-btn" onclick="handleForm(this)">Test Service</button>
+        </div>
+    </form>
+        `;
     targetEl.innerHTML = "";
     targetEl.appendChild(div);
 }
 
+var details = {};
+const RAPIDAPI_API_URL = 'https://email.microapi.dev/v1/';
 
-
-const formTemplates = {
-    "certificate mail": ``
+const handleForm = function(e){
+    e.preventDefault;
+    details = {};
+    // console.log(e.parent)
+    for (let i = 1; i < e.form.children.length - 1; i++) {
+        details[e.form.children[i].children[0].name] = e.form.children[i].children[0].value 
+    }
+    console.log(details);
+    console.log(elemId);
+    axios.post(RAPIDAPI_API_URL+elemId+"/", details)
+    .then(response => {
+        const data = response.data;
+        console.log('data', data);
+    })
 }
