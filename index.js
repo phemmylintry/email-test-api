@@ -1,6 +1,5 @@
 var elemId = "sendmail";
 function dragstart_handler(ev) {
- // Add the target element's id to the data transfer object
  elemId = ev.target.id;
  ev.dataTransfer.setData("application/my-app", ev.target.id);
 //  ev.dataTransfer.dropEffect = "copy";
@@ -11,11 +10,19 @@ function dragover_handler(ev) {
 }
 function drop_handler(ev) {
  ev.preventDefault();
- // Get the id of the target and add the moved element to the target's DOM
      const data = ev.dataTransfer.getData("application/my-app");
     let targetEl = document.getElementById("target");
      let div = document.createElement("div");
      div.innerHTML = formTemplate[elemId];
+    targetEl.innerHTML = "";
+    targetEl.appendChild(div);
+}
+function showForm(elem){
+    console.log(elem.id)
+    elemId = elem.id;
+    let targetEl = document.getElementById("target");
+    let div = document.createElement("div");
+    div.innerHTML = formTemplate[elemId];
     targetEl.innerHTML = "";
     targetEl.appendChild(div);
 }
@@ -35,12 +42,9 @@ const handleForm = function(e){
         }
 
     }
-    console.log(details);
-    console.log(elemId);
     axios.post(RAPIDAPI_API_URL+elemId+"/", details)
     .then(response => {
         const data = response.data;
-        console.log('data', data);
         alert(data.status);
     })
 }
