@@ -70,8 +70,8 @@ textarea.input {
 	color: #424242;
 }
 input:disabled{
-	background-color: #f1f1f1;
-	color: #b3b3b3;
+	background-color: #8d8d8d;
+	color: #ececec;
 }
 
 .shadow-input {
