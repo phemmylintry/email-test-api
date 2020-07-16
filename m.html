@@ -6,10 +6,9 @@
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="./bootstrap.min.css">
 		<link rel="stylesheet" href="./style.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"> -->
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> -->
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	</head>
 	<body class="bg-secondary">
 		
@@ -18,13 +17,13 @@
 				<div class="col-md-6 col-12 py-3 pt-md-5">
 					<div class="bg-light h-100-100 p-3 d-flex justify-content-around flex-wrap fs-16">
 						<div id="send_certificate" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Certificate Mail</div>
-						<!-- <div id="send_confirmation" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Confirmation Mail</div>
-							<div id="send_invitation" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Invitation Mail</div>
-							<div id="send_welcome" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Registration Mail</div> -->
-							<div id="sendmail" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Simple mail</div>
-							<!-- <div id="sendmailwithtemplate" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Mail with Template</div> -->
-						</div>
+						<!-- <div id="send_confirmation" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Confirmation Mail</div> -->
+						<!-- <div id="send_invitation" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Invitation Mail</div> -->
+						<div id="send_welcome" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Registration Mail</div>
+						<div id="sendmail" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Simple mail</div>
+						<div id="sendmailwithtemplate" class="card p-2 my-1 text-center shadow-sm" draggable="true" ondragstart="dragstart_handler(event)">Mail with Template</div>
 					</div>
+				</div>
 			<div class="col-md-6 col-12 py-3 px-0 mh-490" id="target" ondrop="drop_handler(event)" ondragover="dragover_handler(event)">
 				<div>
 					<form onsubmit="return false" class="bg-white p-3 rounded">
