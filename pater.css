@@ -1,0 +1,158 @@
+* {
+	margin: 0px; 
+	padding: 0px; 
+	box-sizing: border-box;
+}
+
+.h-100-100{
+	height: 100%;
+}
+
+.bg-light{
+	background-color: #e2e2e2!important;
+}
+body {
+	height: 100vh;
+	font-family: "Nunito";
+	font-weight: 400;
+}
+
+form{
+	min-width: 290px;
+	max-width: 500px;
+}
+
+textarea {
+	outline: none;
+	border: none;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #999999; }
+
+.contact-form-title {
+	display: block;
+	font-family: "Nunito";
+	font-size: 24px;
+	color: #333333;
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+input + .shadow-input, textarea + .shadow-input {
+	border-radius: 25px;
+}
+
+textarea.input {
+	min-height: 150px;
+	border-radius: 25px;
+	padding: 12px 30px;
+}
+
+.wrap-input {
+	position: relative;
+	z-index: 1;
+	margin-bottom: 20px;
+}
+
+.input {
+	width: 100%;
+	height: 40px;
+	border-radius: 25px;
+	padding: 10px 30px;
+	outline: none;
+	border: none;
+	display: block;
+	background: #e6e6e6;
+	font-family: "Nunito";
+	font-weight: 600;
+	font-size: 15px;
+	line-height: 1.5;
+	color: #424242;
+}
+input:disabled{
+	background-color: #f1f1f1;
+	color: #b3b3b3;
+}
+
+.shadow-input {
+	content: '';
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	box-shadow: 0px 0px 0px 0px;
+	color: rgba(87,184,70, 0.5);
+}
+
+.input:focus + .shadow-input {
+	animation: anim-shadow 0.5s ease-in-out forwards;
+}
+
+.container-form-btn {
+	display: flex;
+	justify-content: center;
+}
+
+.form-btn {
+	outline: none !important;
+	border: none;
+	background: transparent;
+	min-width: 193px;
+	height: 50px;
+	border-radius: 25px;
+	background: #57b846;
+	font-family: "Nunito";
+	font-weight: 600;
+	font-size: 15px;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 25px;
+	transition: all 0.4s;
+}
+
+@-webkit-keyframes anim-shadow {
+	to {
+		box-shadow: 0px 0px 80px 30px;
+		opacity: 0;
+	}
+}
+
+@keyframes anim-shadow {
+	to {
+		box-shadow: 0px 0px 80px 30px;
+		opacity: 0;
+	}
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+.mh-490{
+	min-height: 490px;
+}
+.card{
+	min-width: 10px!important;
+	width: 200px;
+	min-height: 40px;
+	height: 60px;
+}
+
+@media (max-width: 767px){
+	.h-100-100{
+		min-height: 100px;
+		height: 300px;
+	}
+	.fs-16{
+		font-size: 16px;
+	}
+	.card{
+		min-width: 10px;
+		width: 120px;
+	}
+}
