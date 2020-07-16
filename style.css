@@ -43,7 +43,7 @@ input + .shadow-input, textarea + .shadow-input {
 }
 
 textarea.input {
-	min-height: 150px;
+	min-height: 120px;
 	border-radius: 25px;
 	padding: 12px 30px;
 }
@@ -101,7 +101,7 @@ input:disabled{
 	border: none;
 	background: transparent;
 	min-width: 193px;
-	height: 50px;
+	height: 40px;
 	border-radius: 25px;
 	background: #57b846;
 	font-family: "Nunito";
