@@ -194,7 +194,7 @@ const formTemplate = {
                 <span class="shadow-input"></span>
             </div>
             <div class="wrap-input validate-input" data-validate="Link is required">
-                <input class="input" type="text" name="registration_link" placeholder="Registration Link">
+                <input class="input" type="text" name="login_link" placeholder="Registration Link">
                 <span class="shadow-input"></span>
             </div>
             <div class="wrap-input validate-input" data-validate="Message is required">
@@ -258,7 +258,7 @@ const formTemplate = {
                 <span class="shadow-input"></span>
             </div>
             <div class="wrap-input validate-input" data-validate="Link is required">
-                <input class="input" type="text" name="registration_link" placeholder="Registration Link">
+                <input class="input" type="text" name="registration_link" placeholder="Invitation Link">
                 <span class="shadow-input"></span>
             </div>
             <div class="wrap-input validate-input" data-validate="Message is required">
