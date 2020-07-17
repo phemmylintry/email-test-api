@@ -27,12 +27,6 @@ function showForm(elem){
     targetEl.innerHTML = "";
     targetEl.appendChild(div);
 }
-function handleFiles(e) {
-    // let data = new FileReader();
-    // data.readAsBinaryString(e.files["0"]);
-    // fileList = data.result;
-    // fileList = e[];
-}
 
 var details = {};
 const RAPIDAPI_API_URL = 'https://email.microapi.dev/v1/';
