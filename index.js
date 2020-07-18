@@ -148,16 +148,6 @@ const formTemplate = {
                 <input class="input" type="text" name="subject" placeholder="Subject" required>
                 <span class="shadow-input"></span>
             </div>
-            // <div class="d-flex justify-content-around wrap-input" name="radio-btns">
-            //     <div class="input-radio">
-            //         <input class="input radio" type="radio" name="backend_type" value="" checked>
-            //         <label for="sendgrid">Sendgrid</label>
-            //     </div>
-            //     <div class="input-radio">
-            //         <input class="input radio" type="radio" name="backend_type" value="aws">
-            //         <label for="aws">AWS</label>
-            //     </div>
-            </div>
             <div class="wrap-input validate-input" data-validate="Message is required">
                 <textarea class="input" name="body" placeholder="Message Body" spellcheck="false" required></textarea>
                 <span class="shadow-input"></span>
@@ -190,16 +180,6 @@ const formTemplate = {
                 <input class="input" type="text" name="subject" placeholder="Subject" required>
                 <span class="shadow-input"></span>
             </div>
-            // <div class="d-flex justify-content-around wrap-input" name="radio-btns">
-            //     <div class="input-radio">
-            //         <input class="input radio" type="radio" name="backend_type" value="" checked>
-            //         <label for="sendgrid">Sendgrid</label>
-            //     </div>
-            //     <div class="input-radio">
-            //         <input class="input radio" type="radio" name="backend_type" value="aws">
-            //         <label for="aws">AWS</label>
-            //     </div>
-            // </div>
             <div class="wrap-input validate-input" data-validate="Message is required">
                 <textarea class="input" name="htmlBody" placeholder="HTML Template" spellcheck="false" required></textarea>
                 <span class="shadow-input"></span>
@@ -274,16 +254,6 @@ const formTemplate = {
                 <input class="input" type="file" name="attach" accept="image/*" placeholder="Attachment Here" required>
                 <span class="shadow-input"></span>
             </div>
-            // <div class="d-flex justify-content-around wrap-input" name="radio-btns">
-            //     <div class="input-radio">
-            //         <input class="input radio" type="radio" name="backend_type" value="" checked>
-            //         <label for="sendgrid">Sendgrid</label>
-            //     </div>
-            //     <div class="input-radio">
-            //         <input class="input radio" type="radio" name="backend_type" value="aws">
-            //         <label for="aws">AWS</label>
-            //     </div>
-            // </div>
             <div class="wrap-input validate-input" data-validate="Message is required">
                 <textarea class="input" name="body" placeholder="Message Body" spellcheck="false" required></textarea>
                 <span class="shadow-input"></span>
@@ -350,16 +320,6 @@ const formTemplate = {
             <input class="input" type="text" name="confirmation_link" placeholder="Confirmation Link">
             <span class="shadow-input"></span>
         </div>
-        // <div class="d-flex justify-content-around wrap-input" name="radio-btns">
-        //     <div class="input-radio">
-        //         <input class="input radio" type="radio" name="backend_type" value="" checked>
-        //         <label for="sendgrid">Sendgrid</label>
-        //     </div>
-        //     <div class="input-radio">
-        //         <input class="input radio" type="radio" name="backend_type" value="aws">
-        //         <label for="aws">AWS</label>
-        //     </div>
-        // </div>
         <div class="wrap-input validate-input" data-validate="Message is required">
             <textarea class="input" name="body" placeholder="Message Body" spellcheck="false"></textarea>
             <span class="shadow-input"></span>
