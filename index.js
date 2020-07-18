@@ -19,13 +19,16 @@ function drop_handler(ev) {
     targetEl.innerHTML = "";
     targetEl.appendChild(div);
 }
-function showForm(elem){
-    elemId = elem.id;
+function createForm(){
     let targetEl = document.getElementById("target");
     let div = document.createElement("div");
     div.innerHTML = formTemplate[elemId];
     targetEl.innerHTML = "";
     targetEl.appendChild(div);
+}
+function showForm(elem){
+    elemId = elem.id;
+    createForm();
 }
 
 var details = {};
@@ -34,27 +37,36 @@ const RAPIDAPI_API_URL = 'https://email.microapi.dev/v1/';
 const handleForm = function(e){
     e.preventDefault;
     details = {};
-    if(elemId == "awsmail-attachment"){
-        let formInputData = new FormData();
-        for (let i = 1; i < e.form.children.length - 1; i++) {
-            if(e.form.children[i].children[0].name){
-                if(e.form.children[i].children[0].name == "attach"){
-                    // console.log(fileList);
-                    // formInputData.append("attach", fileList);  
-                    formInputData.append("attach", e.form.children[i].children[0].files[0]);  
-                }else{
-                    formInputData.append(e.form.children[i].children[0].name, e.form.children[i].children[0].value)
-                }
+    let inputs = document.getElementsByTagName("input");
+    let textArea = document.getElementsByTagName("textarea");
+    let formInputData = new FormData();
+
+    for (let i = 0; i < inputs.length; i++) {
+        if(inputs[i].type == "radio"){
+            if(inputs[i].checked == true){
+                details[inputs[i].name] = inputs[i].value;
+                formInputData.append(inputs[i].name, inputs[i].value);
+            }
+        }else{
+            if(inputs[i].type == "file"){
+                formInputData.append(inputs[i].name, inputs[i].files[0]);
             }else{
-                // fix for grammerly
-                details[e.form.children[i].children[1].name] = e.form.children[i].children[1].value;
+                details[inputs[i].name] = inputs[i].value;
+                formInputData.append(inputs[i].name, inputs[i].value);
             }
         }
+    }
+    if(textArea.length > 0){
+        details[textArea[0].name] = textArea[0].value;
+        formInputData.append(textArea[0].name, textArea[0].value);
+    }
+
+    if(elemId == "awsmail-attachment"){
         axios.post(
             RAPIDAPI_API_URL+elemId+"/",
             formInputData,
             {
-                headers: {
+                    headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             }
@@ -62,20 +74,14 @@ const handleForm = function(e){
         .then(response => {
             const data = response.data;
             alert(data.status);
+            createForm();
         });
     }else{
-        for (let i = 1; i < e.form.children.length - 1; i++) {
-            if(e.form.children[i].children[0].name){
-                details[e.form.children[i].children[0].name] = e.form.children[i].children[0].value;
-            }else{
-                //fix for grammerly
-                details[e.form.children[i].children[1].name] = e.form.children[i].children[1].value;
-            }
-        }
         axios.post(RAPIDAPI_API_URL+elemId+"/", details)
         .then(response => {
             const data = response.data;
             alert(data.status);
+            createForm();
         });
     }
 }
@@ -89,7 +95,7 @@ const formTemplate = {
             <span class="shadow-input"></span>
         </div>
         <div class="wrap-input validate-input" data-validate="Recipient is required: ex@abc.xyz">
-            <input class="input" type="text" name="recipient" placeholder="Participant Email" required>
+            <input class="input" type="email" name="recipient" placeholder="Participant Email" required>
             <span class="shadow-input"></span>
         </div>
         <div class="wrap-input validate-input" data-validate="Subject is required">
@@ -99,6 +105,16 @@ const formTemplate = {
         <div class="wrap-input validate-input" data-validate="Subject is required">
             <input class="input" type="text" name="certificate_link" placeholder="Link to the certificate" required>
             <span class="shadow-input"></span>
+        </div>
+        <div class="d-flex justify-content-around wrap-input" name="radio-btns">
+            <div class="input-radio">
+                <input class="input radio" type="radio" name="backend_type" value="" checked>
+                <label for="sendgrid">Sendgrid</label>
+            </div>
+            <div class="input-radio">
+                <input class="input radio" type="radio" name="backend_type" value="aws">
+                <label for="aws">AWS</label>
+            </div>
         </div>
         <div class="container-form-btn">
             <button class="form-btn" onclick="handleForm(this)">Test Service</button>
@@ -127,6 +143,16 @@ const formTemplate = {
             <div class="wrap-input validate-input" data-validate="Subject is required">
                 <input class="input" type="text" name="subject" placeholder="Subject" required>
                 <span class="shadow-input"></span>
+            </div>
+            <div class="d-flex justify-content-around wrap-input" name="radio-btns">
+                <div class="input-radio">
+                    <input class="input radio" type="radio" name="backend_type" value="" checked>
+                    <label for="sendgrid">Sendgrid</label>
+                </div>
+                <div class="input-radio">
+                    <input class="input radio" type="radio" name="backend_type" value="aws">
+                    <label for="aws">AWS</label>
+                </div>
             </div>
             <div class="wrap-input validate-input" data-validate="Message is required">
                 <textarea class="input" name="body" placeholder="Message Body" spellcheck="false" required></textarea>
@@ -160,6 +186,16 @@ const formTemplate = {
                 <input class="input" type="text" name="subject" placeholder="Subject" required>
                 <span class="shadow-input"></span>
             </div>
+            <div class="d-flex justify-content-around wrap-input" name="radio-btns">
+                <div class="input-radio">
+                    <input class="input radio" type="radio" name="backend_type" value="" checked>
+                    <label for="sendgrid">Sendgrid</label>
+                </div>
+                <div class="input-radio">
+                    <input class="input radio" type="radio" name="backend_type" value="aws">
+                    <label for="aws">AWS</label>
+                </div>
+            </div>
             <div class="wrap-input validate-input" data-validate="Message is required">
                 <textarea class="input" name="htmlBody" placeholder="HTML Template" spellcheck="false" required></textarea>
                 <span class="shadow-input"></span>
@@ -185,8 +221,18 @@ const formTemplate = {
                 <span class="shadow-input"></span>
             </div>
             <div class="wrap-input validate-input" data-validate="Link is required">
-                <input class="input" type="text" name="registration_link" placeholder="Registration Link">
+                <input class="input" type="text" name="login_link" placeholder="Login Link">
                 <span class="shadow-input"></span>
+            </div>
+            <div class="d-flex justify-content-around wrap-input" name="radio-btns">
+                <div class="input-radio">
+                    <input class="input radio" type="radio" name="backend_type" value="" checked>
+                    <label for="sendgrid">Sendgrid</label>
+                </div>
+                <div class="input-radio">
+                    <input class="input radio" type="radio" name="backend_type" value="aws">
+                    <label for="aws">AWS</label>
+                </div>
             </div>
             <div class="wrap-input validate-input" data-validate="Message is required">
                 <textarea class="input" name="body" placeholder="Message Body" spellcheck="false"></textarea>
@@ -221,8 +267,18 @@ const formTemplate = {
                 <span class="shadow-input"></span>
             </div>
             <div class="wrap-input validate-input" data-validate="attachment is required">
-                <input class="input" type="file" name="attach" accept="image/*" onchange="handleFiles(this); return false" placeholder="Attachment Here" required>
+                <input class="input" type="file" name="attach" accept="image/*" placeholder="Attachment Here" required>
                 <span class="shadow-input"></span>
+            </div>
+            <div class="d-flex justify-content-around wrap-input" name="radio-btns">
+                <div class="input-radio">
+                    <input class="input radio" type="radio" name="backend_type" value="" checked>
+                    <label for="sendgrid">Sendgrid</label>
+                </div>
+                <div class="input-radio">
+                    <input class="input radio" type="radio" name="backend_type" value="aws">
+                    <label for="aws">AWS</label>
+                </div>
             </div>
             <div class="wrap-input validate-input" data-validate="Message is required">
                 <textarea class="input" name="body" placeholder="Message Body" spellcheck="false" required></textarea>
@@ -252,6 +308,16 @@ const formTemplate = {
                 <input class="input" type="text" name="registration_link" placeholder="Registration Link">
                 <span class="shadow-input"></span>
             </div>
+            <div class="d-flex justify-content-around wrap-input" name="radio-btns">
+                <div class="input-radio">
+                    <input class="input radio" type="radio" name="backend_type" value="" checked>
+                    <label for="sendgrid">Sendgrid</label>
+                </div>
+                <div class="input-radio">
+                    <input class="input radio" type="radio" name="backend_type" value="aws">
+                    <label for="aws">AWS</label>
+                </div>
+            </div>
             <div class="wrap-input validate-input" data-validate="Message is required">
                 <textarea class="input" name="body" placeholder="Message Body" spellcheck="false"></textarea>
                 <span class="shadow-input"></span>
@@ -277,8 +343,18 @@ const formTemplate = {
             <span class="shadow-input"></span>
         </div>
         <div class="wrap-input validate-input" data-validate="Link is required">
-            <input class="input" type="text" name="registration_link" placeholder="Registration Link">
+            <input class="input" type="text" name="confirmation_link" placeholder="Confirmation Link">
             <span class="shadow-input"></span>
+        </div>
+        <div class="d-flex justify-content-around wrap-input" name="radio-btns">
+            <div class="input-radio">
+                <input class="input radio" type="radio" name="backend_type" value="" checked>
+                <label for="sendgrid">Sendgrid</label>
+            </div>
+            <div class="input-radio">
+                <input class="input radio" type="radio" name="backend_type" value="aws">
+                <label for="aws">AWS</label>
+            </div>
         </div>
         <div class="wrap-input validate-input" data-validate="Message is required">
             <textarea class="input" name="body" placeholder="Message Body" spellcheck="false"></textarea>
@@ -288,37 +364,5 @@ const formTemplate = {
             <button class="form-btn" onclick="handleForm(this)">Test Service</button>
         </div>
     </form>
-    `,
-    "awsmail": `
-        <form onsubmit="return false" class="bg-white p-3 rounded">
-            <span class="contact-form-title"><span class="font-weight-bold">Amazon Mail API</span> Service</span>
-            <div class="wrap-input validate-input" data-validate="">
-                <input class="input bg-disabled" type="text" name="sender" placeholder="Sender" value="femiadenuga@mazzacash.com" disabled>
-                <span class="shadow-input"></span>
-            </div>
-            <div class="wrap-input validate-input" data-validate="Recipient is required: ex@abc.xyz">
-                <input class="input" type="email" name="recipient" placeholder="Recipient Email" required>
-                <span class="shadow-input"></span>
-            </div>
-            <div class="wrap-input validate-input" data-validate="Link is required">
-                <input class="input" type="text" name="cc" placeholder="CC (can be left empty)">
-                <span class="shadow-input"></span>
-            </div>
-            <div class="wrap-input validate-input" data-validate="Link is required">
-                <input class="input" type="text" name="bcc" placeholder="BCC (can be left empty)">
-                <span class="shadow-input"></span>
-            </div>
-            <div class="wrap-input validate-input" data-validate="Subject is required">
-                <input class="input" type="text" name="subject" placeholder="Subject" required>
-                <span class="shadow-input"></span>
-            </div>
-            <div class="wrap-input validate-input" data-validate="Message is required">
-                <textarea class="input" name="body" placeholder="Message Body" spellcheck="false" required></textarea>
-                <span class="shadow-input"></span>
-            </div>
-            <div class="container-form-btn">
-                <button class="form-btn" onclick="handleForm(this)">Test Service</button>
-            </div>
-        </form>
     `,
 }

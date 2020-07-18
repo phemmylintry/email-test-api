@@ -138,7 +138,7 @@ button:hover {
 }
 .card{
 	min-width: 10px!important;
-	width: 200px;
+	width: 180px;
 	min-height: 40px;
 	height: 45px;
 }
@@ -150,6 +150,15 @@ input::-webkit-file-upload-button{
 	position: absolute;
 	margin: -10px -30px;
 	padding: 0 10px;
+}
+.input-radio{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+input[type="radio"], .input-radio > label{
+	width: 15px;
+	margin: 0 5px;
 }
 
 @media (max-width: 767px){
@@ -163,5 +172,19 @@ input::-webkit-file-upload-button{
 	.card{
 		min-width: 10px;
 		width: 120px;
+	}
+}
+
+@media (max-width: 600px){
+	
+	.card{
+		font-size: 13px;
+		/* height: 105px; */
+	}
+}
+
+@media (min-width: 1200px){
+	.card{
+		margin: 10px 20px;
 	}
 }
